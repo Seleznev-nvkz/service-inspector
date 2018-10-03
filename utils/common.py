@@ -43,7 +43,7 @@ class InspectorAbstract:
         assert self.name, f'Set name for {class_name}'
         assert self.interval, f'Set interval for {class_name}'
         self.details = {}
-        self.thread = InfiniteTimer(self.interval, self._run, name=f'hawkeye thread {class_name}')
+        self.thread = InfiniteTimer(int(self.interval), self._run, name=f'hawkeye thread {class_name}')
 
     def run(self):
         self.thread.start()
@@ -110,3 +110,6 @@ class InspectorBuilder:
 
     def __repr__(self):
         return f'{self.name}: {self.instances}'
+
+    def __len__(self):
+        return len(self.instances)
