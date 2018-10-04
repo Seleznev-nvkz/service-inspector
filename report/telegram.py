@@ -52,7 +52,6 @@ class Bot:
 
         if keeper.is_launched:
             self.send(bot, pformat(keeper.data, depth=4))
-            print(keeper.data)
         else:
             keeper.run()
             self.send(bot, 'Was not launched.\nRunning...')
