@@ -5,7 +5,7 @@ Simple service to observe healthy of other services.
 
 ## How to use  
 ### How make new checker
-You should to create new class inheretaning from `InspectorAbstract` from `utils.common`. Simple example:
+You should to create new class inheriting from `InspectorAbstract` from `utils.common`. Simple example:
 ```
 class GoogleInspector(InspectorAbstract):  
   interval = 60  
