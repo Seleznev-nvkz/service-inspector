@@ -32,14 +32,14 @@ class MainKeeper:
                 reporter.send_alarm(data=data)
 
     def run(self):
-        if not self._launched:
+        if not self.is_launched:
             for project in self.projects:
                 project.run()
             self.reporters_thread.start()
             self._launched = True
 
     def stop(self):
-        if self._launched:
+        if self.is_launched:
             for project in self.projects:
                 project.stop()
             self.reporters_thread.stop()
