@@ -82,6 +82,7 @@ class Bot:
 
 
 class TelegramReporter:
+    bot = None
 
     def __init__(self):
         try:
@@ -91,5 +92,5 @@ class TelegramReporter:
             print('Telegram bot disabled')
 
     def send_alarm(self, data: dict):
-        if not self.bot.muted:
+        if self.bot and not self.bot.muted:
             self.bot.send(self.bot.client.bot, formatting_text(data))
