@@ -1,4 +1,6 @@
 # Service-inspector
+
+[![Build Status](https://travis-ci.org/Seleznev-nvkz/service-inspector.svg?branch=master)](https://travis-ci.org/Seleznev-nvkz/service-inspector)
   
 ## In a nutshell  
 Simple service to observe healthy of other services.
