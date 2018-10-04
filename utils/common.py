@@ -1,29 +1,36 @@
 from pkgutil import ModuleInfo
 from inspect import getmembers
-from threading import Timer, Event
+from threading import Timer, Event, Thread
 
 
 class InfiniteTimer(Timer):
     """
-    t = Timer(30.0, f, args=None, kwargs=None)
+    t = Timer(30.0, f, name, args=None, kwargs=None)
             t.start()
-            t.cancel()     # stop the timer's action if it's still waiting
+            t.stop()     # stop the timer's action if it's still waiting
     """
-    def __init__(self, *args, **kwargs):
-        self._name = kwargs.pop('name')
-        super().__init__(*args, **kwargs)
-        self._stop_event = Event()
+    def __init__(self, interval, target, name, *args, **kwargs):
+        Thread.__init__(self, name=name, daemon=True)
+        self.interval = interval
+        self.target = target
+        self.args = args if args is not None else []
+        self.kwargs = kwargs if kwargs is not None else {}
+        self.finished = Event()
+        self._launched = Event()
 
     def stop(self):
-        self._stop_event.set()
         self.finished.set()
 
-    def stopped(self):
-        return self._stop_event.is_set()
+    def start(self):
+        if self._launched.is_set():
+            self.finished.clear()
+        else:
+            super().start()
+            self._launched.set()
 
     def run(self):
         while not self.finished.is_set():
-            self.function(*self.args, **self.kwargs)
+            self.target(*self.args, **self.kwargs)
             self.finished.wait(self.interval)
 
 
