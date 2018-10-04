@@ -38,7 +38,7 @@ class InspectorAbstract:
     details = None
 
     def __init__(self):
-        self.data = True
+        self.result = True
         class_name = type(self).__name__
         assert self.name, f'Set name for {class_name}'
         assert self.interval, f'Set interval for {class_name}'
@@ -50,22 +50,22 @@ class InspectorAbstract:
 
     def _run(self):
         """ Should be run into thread """
-        self.data = self.check()
+        self.result = self.check()
 
     def stop(self):
         self.thread.stop()
 
     def check(self):
-        """ Check service and save to data """
+        """ Check service and save to result """
         raise NotImplementedError()
 
     def __bool__(self):
         """ Health of service without details;
             may be override - by default true/false """
-        return self.data
+        return self.result
 
     def __repr__(self):
-        return f'{self.name} - {self.data}'
+        return f'{self.name} - {self.result}'
 
     def set_details_from_response(self, response):
         self.details = {'status': response.status_code, 'body': response.content.decode()}
