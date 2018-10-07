@@ -1,6 +1,6 @@
 # Service-inspector
 
-[![Build Status](https://travis-ci.org/Seleznev-nvkz/service-inspector.svg?branch=master)](https://travis-ci.org/Seleznev-nvkz/service-inspector)
+[![Build Status](https://travis-ci.org/Seleznev-nvkz/service-inspector.svg?branch=master)](https://travis-ci.org/Seleznev-nvkz/service-inspector)   [![Coverage Status](https://coveralls.io/repos/github/Seleznev-nvkz/service-inspector/badge.svg?branch=master)](https://coveralls.io/github/Seleznev-nvkz/service-inspector?branch=master)
   
 ## In a nutshell  
 Simple service to observe healthy of other services.
